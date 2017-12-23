@@ -51,10 +51,14 @@ class State:
         state.field = dict(self.field)
         state.player = adversary
 
+        same = True
+
         for direction in DIRECTIONS:
             terminate = False
             first_move = True
             cur = pos
+            if state.field[cur] != EMPTY:
+                continue
             while not terminate:
                 cur = (cur[0] + direction[0], cur[1] + direction[1])
                 try:
@@ -63,6 +67,7 @@ class State:
                         continue
                     if state.field[cur] == self.player:
                         if not first_move:
+                            same = False
                             while cur != pos:
                                 state.field[cur] = self.player
                                 cur = (cur[0] - direction[0], cur[1] - direction[1])
@@ -74,12 +79,13 @@ class State:
                         continue
                 except:
                     terminate = True
-                    
+        if same:
+            return self
         state.compute_hash()
         return state 
     
     @cache    
-    def expand_state(self, retry=False):        
+    def expand_state(self):        
         adversary = 3 - self.player
 
         next_states = []
@@ -123,16 +129,21 @@ class State:
                         except KeyError:
                             terminate = True
                             
-        if len(next_states) > 0 or retry:
+        if len(next_states) > 0:
             return next_states
         state = copy.copy(self)
         state.field = dict(self.field)
         state.player = adversary
         state.compute_hash()
-        return state.expand_state(True)
+        return [state]
         
     def is_terminal(self):
-        return len(self.expand_state()) == 0
+        if len(self.expand_state()) == 1 and len(self.expand_state()[0].expand_state()) == 1:
+            f1 = self.field
+            f2 = self.expand_state()[0].expand_state()[0].field
+            if hash(frozenset(f1.items())) == hash(frozenset(f2.items())):
+                return True
+        return False
         
     def draw(self):
         for x in range(self.height):
