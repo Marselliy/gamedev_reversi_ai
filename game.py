@@ -9,8 +9,8 @@ from tkinter import *
 from tkinter.messagebox import *
 
 parser = argparse.ArgumentParser(description='Game options.')
-parser.add_argument('width', nargs='?', help='Field width', default=3, type=int)
-parser.add_argument('height', nargs='?', help='Field height', default=3, type=int)
+parser.add_argument('width', nargs='?', help='Field width', default=8, type=int)
+parser.add_argument('height', nargs='?', help='Field height', default=8, type=int)
 parser.add_argument('player1', nargs='?', help='human or AI player?', default='human')
 parser.add_argument('player2', nargs='?', help='human or AI player?', default='AI')
 parser.add_argument('difficulty', nargs='?', help='AI difficulty?', default=5, type=int)
