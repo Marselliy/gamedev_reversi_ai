@@ -1,4 +1,4 @@
-# gamedev_reversi_ai
+# Reversi (Othello)
 
 Python implementation of Reversi(Othello) game agains human or computer.
 
