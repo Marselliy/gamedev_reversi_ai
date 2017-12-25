@@ -1,0 +1,3 @@
+numpy==1.12.1
+progressbar2==3.34.3
+pyswarm==0.7
