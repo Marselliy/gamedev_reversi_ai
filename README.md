@@ -1,6 +1,6 @@
 # Reversi (Othello)
 
-Python implementation of Reversi(Othello) game agains human or computer.
+Python implementation of Reversi(Othello) game against human or computer.
 
 ![screenshot](img/game.png)
 
