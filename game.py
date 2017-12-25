@@ -74,7 +74,12 @@ class GameGrid(Frame):
         self.state = State(width, height)
         self.cost = ones_cost
         try:
-            self.cost = get_linear_rank_cost(np.load(weight_filepath))
+            x = np.load(weight_filepath).reshape(height, width)
+            d = dict()
+            for i in range(x.shape[0]):
+                for j in range(x.shape[1]):
+                    d[(i, j)] = x[i, j]
+            self.cost = get_linear_rank_cost(d)
         except:
             pass
 
