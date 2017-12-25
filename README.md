@@ -2,6 +2,8 @@
 
 Python implementation of Reversi(Othello) game agains human or computer.
 
+![screenshot](img/game.png)
+
 To start the game, run:
     
     $ python game.py [width] [height] [player1] [player2] [difficulty] [weight_filepath]
